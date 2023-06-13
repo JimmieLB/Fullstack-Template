@@ -94,3 +94,8 @@ input:focus {
   height: 50px;
   border-radius: 45px;
 }
+
+.username {
+  color: #598392;
+  margin-bottom: 5px;
+}

@@ -7,7 +7,7 @@ const Repo = ({repo}) => {
         <img src={repo.avatar}/>
       </div>
       <div className="repo_list_info">
-        <div>{repo.username}</div>
+        <div className='username'>@{repo.username}</div>
         <div>{repo.title}</div>
       </div>
       <div className="repo_list_info3">
