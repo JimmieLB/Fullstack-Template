@@ -7,7 +7,7 @@
     "react-dev": "webpack --mode development --watch",
     "server-dev": "npx nodemon server/index.js",
     "start": "node server/index.js",
-    "build": "npm i"
+    "build": "npm install"
   },
   "author": "Beth Johnson",
   "license": "ISC",

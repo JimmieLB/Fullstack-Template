@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
-const PASSWORD = require('./config.js').PASSWORD;
-const USERNAME = require('./config.js').USERNAME;
-const CONNECTION = require('./config.js').CONNECTION;
-const CONNECTIONPARAMS = require('./config.js').CONNECTIONPARAMS;
+const CONNECTION = require('../getSecrets.js').CONNECTION;
+const CONNECTIONPARAMS = require('../getSecrets.js').CONNECTIONPARAMS;
 
 mongoose.connect(CONNECTION, CONNECTIONPARAMS);
 // mongoose.connect('mongodb://localhost/fetcher');
