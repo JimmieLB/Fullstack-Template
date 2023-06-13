@@ -9,20 +9,21 @@ const App = () => {
 
   const [repos, setRepos] = useState([]);
 
-  useEffect(() => {
+  let refresh = () => {
     Request.get().then((data) => {
       setRepos(data);
     }).catch((err) => {
       console.error(err);
-    })
+    });
+  };
+
+  useEffect(() => {
+    refresh();
   }, []);
 
   useEffect(() => {
     let interval = setInterval(() => {
-      Request.get().then((data) => {
-        setRepos(data);
-        console.log(data);
-      })
+      refresh();
     }, 5000);
 
     return () => clearInterval(interval);
@@ -32,6 +33,7 @@ const App = () => {
     console.log(`${term} was searched`);
     Request.post('repos', term).then((data) => {
       console.log(data);
+      refresh();
     }).catch((err) => {
       console.error(err);
     });

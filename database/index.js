@@ -1,5 +1,11 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fetcher');
+const PASSWORD = require('./config.js').PASSWORD;
+const USERNAME = require('./config.js').USERNAME;
+const CONNECTION = require('./config.js').CONNECTION;
+const CONNECTIONPARAMS = require('./config.js').CONNECTIONPARAMS;
+
+mongoose.connect(CONNECTION, CONNECTIONPARAMS);
+// mongoose.connect('mongodb://localhost/fetcher');
 
 let repoSchema = mongoose.Schema({
   title: 'String',
@@ -46,24 +52,11 @@ let save = (objs) => {
   // This function should save a repo or repos to
   // the MongoDB
   console.log('Save attempt');
-  return new Promise((resolve, reject) => {
-    Repo.create(filterAllData(objs)).then((data) => {
-      console.log('OBJ CREATED', objs);
-      resolve();
-    }).catch((err) => {
-      reject(err);
-    });
-  });
+  return Repo.insertMany(filterAllData(objs));
 };
 
 let get = (num) => {
-  return new Promise((resolve, reject) => {
-    Repo.find({}, null, {limit: 25}).then((data) => {
-      resolve(data);
-    }).catch((err) => {
-      reject(err);
-    });
-  });
+  return Repo.find({}, null, {limit: 25, sort: { 'watchers': -1 }});
 };
 
 let reset = () => {

@@ -7,6 +7,8 @@ const getRepos = require('../helpers/github.js').getReposByUsername;
 const { Octokit } = require('octokit');
 let app = express();
 
+const PORT = process.env.PORT || 1128
+
 const octokit = new Octokit({
   auth: apiToken
 });
@@ -61,9 +63,7 @@ app.get('/repos', function (req, res) {
   });
 });
 
-let port = 1128;
-
-app.listen(port, function() {
-  console.log(`listening on port ${port}`);
+app.listen(PORT, function() {
+  console.log(`listening on port ${PORT}`);
 });
 
