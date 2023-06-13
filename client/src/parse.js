@@ -1,13 +1,12 @@
 import $ from 'jquery';
 
-const url = 'http://localhost:1128/';
+const url = window.location.href;
 let Request = {
-  url: 'http://localhost:1128/',
 
-  get: function(url){
+  get: function(){
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: 'http://localhost:1128/repos',
+        url: url + 'repos',
         type: 'GET',
         success: (data) => {
           resolve(data);
