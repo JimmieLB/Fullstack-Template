@@ -2,16 +2,11 @@ const express = require('express');
 const path = require('path');
 const db = require('../database/index');
 const $ = require('jquery');
-const apiToken = require('./config.js').GITHUB_API_KEY;
+const apiToken = require('../getSecrets.js').GITHUB_API_KEY;
 const getRepos = require('../helpers/github.js').getReposByUsername;
-const { Octokit } = require('octokit');
 let app = express();
 
 const PORT = process.env.PORT || 1128
-
-const octokit = new Octokit({
-  auth: apiToken
-});
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/dist/')));
