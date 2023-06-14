@@ -4,7 +4,7 @@ const db = require('../database/index');
 const $ = require('jquery');
 let app = express();
 
-const PORT = process.env.PORT || 1128
+const PORT = process.env.PORT || 1128;
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/dist/')));

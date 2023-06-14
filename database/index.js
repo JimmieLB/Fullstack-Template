@@ -13,7 +13,7 @@ let repoSchema = mongoose.Schema({
   followers: 'Number'
 });
 
-let Repo = mongoose.model('Repo', repoSchema);
+let Repo = mongoose.model('Data', repoSchema);
 
 let save = (objs) => {
   return Repo.insertMany(objs);
