@@ -2,8 +2,6 @@ const express = require('express');
 const path = require('path');
 const db = require('../database/index');
 const $ = require('jquery');
-const apiToken = require('../getSecrets.js').GITHUB_API_KEY;
-const getRepos = require('../helpers/github.js').getReposByUsername;
 let app = express();
 
 const PORT = process.env.PORT || 1128
@@ -20,42 +18,9 @@ app.get('/', function(req, res) {
 });
 
 
-app.post('/repos', function (req, res) {
-  // TODO - your code here!
-  // This route should take the github username provided
-  // and get the repo information from the github API, then
-  // save the repo information in the database
-  console.log('TERM:',req.body.term);
-  // octokit.request('GET /search/repositories', {
-  //   q: req.body.term
-  // }).then((data) => {
-  getRepos(req.body.term).then((data) => {
-    db.save(data.data).then(() => {
-      console.log('success Stored')
-      console.log(data.data.length);
-    }).catch((err) => {
-      console.log('ERROR', err);
-    })
-  }).catch((err) => {
-    console.error(err);
-  })
-  // db.save({
-  //   username: 'USERNAME',
-  //   title: 'Repo name',
-  //   watchers: 5,
-  //   link: 'blahblahblah.com'
-  // });
+app.post('/', function (req, res) {
+  console.log(req.body);
   res.send();
-});
-
-app.get('/repos', function (req, res) {
-  // TODO - your code here!
-  // This route should send back the top 25 repos
-  db.get(25).then((data) => {
-    res.send(data);
-  }).catch((err) => {
-    res.sendStatus(400);
-  });
 });
 
 app.listen(PORT, function() {

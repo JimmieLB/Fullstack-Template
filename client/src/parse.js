@@ -3,10 +3,10 @@ import $ from 'jquery';
 const url = window.location.href;
 let Request = {
 
-  get: function(){
+  get: function(path){
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: url + 'repos',
+        url: url + path,
         type: 'GET',
         success: (data) => {
           resolve(data);
